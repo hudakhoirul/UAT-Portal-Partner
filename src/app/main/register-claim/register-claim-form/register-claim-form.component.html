@@ -15,7 +15,7 @@
     <mat-horizontal-stepper [linear]="false" #stepper style="margin-top: 20px">
         <mat-step [completed]="isStepOneComplete">
             <ng-template matStepLabel>{{'register.searchInsured.tittle' | translate}}</ng-template>
-            
+
             <div class="widget-container">
                 <dx-form id="form"
                     #insuredForm
@@ -37,7 +37,7 @@
                     </dxi-item>
                     <dxi-item itemType="empty"></dxi-item>
                     <dxi-item itemType="EmptyItem" style="float: right">
-                        <px-animated-button 
+                        <px-animated-button
                             label="{{'register.searchInsured.searchBtn' | translate}}"
                             type="success"
                             (buttonClick)="getListInsured()"
@@ -124,7 +124,7 @@
                         <dxi-item dataField="claimAmount" *ngIf="isInputAmount">
                             <dxo-label text="{{'register.claimInformation.claimAmount' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Claim amount is required"></dxi-validation-rule>
-                            
+
                             <div *dxTemplate>
                                 <dx-number-box
                                     #claimAmount
@@ -132,9 +132,9 @@
                                     class="number-right"
                                     [value]="insuredInformation.claimAmount"
                                     (onValueChanged)="claimAmountChanged($event)"
-                                ></dx-number-box>  
+                                ></dx-number-box>
                             </div>
-                        
+
                         </dxi-item>
 
                         <dxi-item dataField="illness" editorType="dxSelectBox" [editorOptions]="{ items: illness['data'], displayExpr: 'name', valueExpr: 'illnessCode', onValueChanged: onIllnessChanged}">
@@ -174,7 +174,7 @@
                             <dxo-label text="{{'register.claimInformation.claimantPhoneNo' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Phone No is required"></dxi-validation-rule>
                         </dxi-item>
-                            <dxi-item dataField="claimantRelationship" editorType="dxSelectBox" 
+                            <dxi-item dataField="claimantRelationship" editorType="dxSelectBox"
                             [editorOptions]="{ items: relations['data'],  displayExpr: 'relationInsuredName', valueExpr: 'relationInsuredCode', disabled: isInsured==='Yes' }">
                             <dxo-label text="{{'register.claimInformation.claimantRelationship' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Relationship is required"></dxi-validation-rule>
@@ -193,6 +193,8 @@
                         <dxi-item dataField="beneficiaryKtpNo">
                             <dxo-label text="{{'register.claimInformation.beneficiaryKtpNo' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Beneficiary KTP is required"></dxi-validation-rule>
+                            <dxi-validation-rule type="stringLength" [min]="16" message="KTP must have 16 character"></dxi-validation-rule>
+                            <dxi-validation-rule type="stringLength" [max]="16" message="KTP must have 16 character"></dxi-validation-rule>
                         </dxi-item>
                         <dxi-item dataField="relationshipBeneficiary" editorType="dxSelectBox" [editorOptions]="{ items: relations['data'], displayExpr: 'relationInsuredName', valueExpr: 'relationInsuredCode' }">
                             <dxo-label text="{{'register.claimInformation.relationshipBeneficiary' | translate}}"></dxo-label>
@@ -201,19 +203,21 @@
                         <dxi-item dataField="beneficiaryFamilyCardNo">
                             <dxo-label text="{{'register.claimInformation.beneficiaryFamilyCardNo' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Beneficiary family card is required"></dxi-validation-rule>
+                            <dxi-validation-rule type="stringLength" [min]="16" message="Beneficiary family card must have 16 character"></dxi-validation-rule>
+                            <dxi-validation-rule type="stringLength" [max]="16" message="Beneficiary family card must have 16 character"></dxi-validation-rule>
                         </dxi-item>
                     </dxi-item>
 
                     <dxi-item itemType="group" caption="{{'register.claimInformation.bankInfoAcc' | translate}}" colCount="2" *ngIf="isNeedBankInsured">
-                        <dxo-label text="{{'register.claimInformation.accountNo' | translate}}"></dxo-label>
                         <dxi-item dataField="accountNo">
+                            <dxo-label text="{{'register.claimInformation.accountNo' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Account No is required"></dxi-validation-rule>
                         </dxi-item>
                         <dxi-item dataField="accountCurrencyCode" editorType="dxSelectBox" [editorOptions]="{ items: currency['data'], displayExpr: 'currencyCode', valueExpr: 'currencyCode' }">
                             <dxo-label text="{{'register.claimInformation.accountCurrencyCode' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Currency is required"></dxi-validation-rule>
                         </dxi-item>
-                        
+
                         <dxi-item dataField="accountBankCode" editorType="dxSelectBox" [editorOptions]="{ items: bank['data'], displayExpr: 'bankName', valueExpr: 'bankCode', onValueChanged: onBankChanged}">
                             <dxo-label text="{{'register.claimInformation.accountBankCode' | translate}}"></dxo-label>
                             <dxi-validation-rule type="required" message="Bank is required"></dxi-validation-rule>
@@ -231,7 +235,7 @@
                     </dxi-item>
                 </dx-form>
             </div>
-            
+
             <div class="my-16" style="float: right">
                 <dx-button
                     text="Prev"
@@ -263,7 +267,7 @@
                     text="Prev"
                     (onClick)="goBack(stepper)">
                 </dx-button>
-                <px-animated-button 
+                <px-animated-button
                     style="margin-left: 10px"
                     label="Submit"
                     type="success"
@@ -274,7 +278,7 @@
         </mat-step>
     </mat-horizontal-stepper>
 
-    
+
 </div>
 
 
